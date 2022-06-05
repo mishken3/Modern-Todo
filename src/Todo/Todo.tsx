@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 export const Todo = () => {
-	const todos = useSelector((store) => store.todos);
+	const todos = useTypedSelector((store) => store.todos);
 	console.log('(todos) :>> ', todos);
-	return <p>{todos[0].id}</p>;
+	return <p>{todos[0].text}</p>;
 };
