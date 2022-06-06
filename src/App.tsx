@@ -8,10 +8,10 @@ import { Todo } from './components/Todo';
 function App() {
 	return (
 		<Provider store={store}>
-			<>
+			<div className="App">
 				<p>App</p>
 				<Todo />
-			</>
+			</div>
 		</Provider>
 	);
 }
