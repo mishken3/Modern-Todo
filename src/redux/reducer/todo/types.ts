@@ -1,11 +1,11 @@
 import { TODO_ACTION_TYPE } from './action-types';
-export interface Todo {
+export interface TodoType {
 	id: number;
 	text: string;
 	isCompleted: boolean;
 }
 
-export type TodoState = Todo[] | [];
+export type TodoState = TodoType[] | [];
 
 export interface Action {
 	id: number;
