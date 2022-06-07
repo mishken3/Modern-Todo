@@ -10,5 +10,5 @@ export type TodoState = TodoType[] | [];
 export interface Action {
 	id: number;
 	type: TODO_ACTION_TYPE;
-	payload: number | string;
+	payload: string;
 }

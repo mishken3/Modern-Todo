@@ -42,11 +42,16 @@ const todoReducer = (state = initialState, action: Action) => {
 		}
 
 		case TODO_ACTION_TYPE.DELETE_TODO: {
-			return state.filter((todo) => todo.id !== action.payload);
+			return state.filter((todo) => todo.id !== action.id);
 		}
 
 		case TODO_ACTION_TYPE.CHANGE_TODO: {
-			return state;
+			return state.map((todo) => {
+				if (todo.id !== action.id) return todo;
+
+				todo.text = action.payload;
+				return todo;
+			});
 		}
 
 		default: {
