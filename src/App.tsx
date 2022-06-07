@@ -5,16 +5,16 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'normalize.css';
 
-import { Header, Todo } from './components';
+import { AddTodo, Header, Todo } from './components';
 
 function App() {
 	return (
 		<Provider store={store}>
 			<Header />
-			<div className="App">
-				<p>App</p>
-				<Todo />
-			</div>
+
+			<AddTodo />
+
+			<Todo />
 		</Provider>
 	);
 }
