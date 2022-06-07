@@ -3,7 +3,17 @@ import { TODO_ACTION_TYPE } from './action-types';
 const initialState: TodoState = [
 	{
 		id: 1,
-		text: 'Todo text',
+		text: 'HTML',
+		isCompleted: false,
+	},
+	{
+		id: 2,
+		text: 'CSS',
+		isCompleted: false,
+	},
+	{
+		id: 3,
+		text: 'JS',
 		isCompleted: false,
 	},
 ];
