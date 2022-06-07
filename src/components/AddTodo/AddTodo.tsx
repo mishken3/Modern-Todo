@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/reducer/todo/action-creators';
 
@@ -20,7 +20,7 @@ export const AddTodo = () => {
 	};
 
 	return (
-		<form className="mt-3 d-flex" onSubmit={handleOnSubmit}>
+		<Form className="mt-3 d-flex justify-content-center" onSubmit={handleOnSubmit}>
 			<InputGroup className="mb-3 w-50">
 				<FormControl
 					className="shadow-none"
@@ -33,6 +33,6 @@ export const AddTodo = () => {
 					Добавить
 				</Button>
 			</InputGroup>
-		</form>
+		</Form>
 	);
 };
