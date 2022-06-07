@@ -18,5 +18,5 @@ export const changeTodo = (id: number, text: string) => ({
 
 export const toggleTodo = (id: number) => ({
 	type: TODO_ACTION_TYPE.TOGGLE_TODO,
-	payload: id,
+	id,
 });

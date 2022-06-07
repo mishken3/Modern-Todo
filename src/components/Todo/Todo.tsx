@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListGroupItem } from 'react-bootstrap';
+import { Form, ListGroupItem } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { changeTodo, deleteTodo } from '../../redux/reducer/todo/action-creators';
+import { changeTodo, deleteTodo, toggleTodo } from '../../redux/reducer/todo/action-creators';
 import { TodoType } from '../../redux/reducer/todo/types';
 
 import './Todo.css';
@@ -18,23 +18,35 @@ export const Todo = () => {
 		);
 	}
 
-	const handleOnchange = (todoId: number) => {
+	const handleOnToggleComplete = (todoId: number): void => {
+		dispatch(toggleTodo(todoId));
+	};
+
+	const handleOnChangeText = (todoId: number): void => {
 		const newTodoText = 'test new Text';
 
 		dispatch(changeTodo(todoId, newTodoText));
 	};
 
 	return (
-		<div className="todos">
+		<Form className="todos">
 			{todos.map((todo) => (
 				<div key={todo.id} className="todo m-2">
-					<ListGroupItem>{todo.text}</ListGroupItem>
+					<Form.Check
+						aria-label="option 1"
+						type="checkbox"
+						onChange={() => handleOnToggleComplete(todo.id)}
+					/>
+
+					<ListGroupItem variant={todo.isCompleted ? 'success' : 'light'}>
+						{todo.text}
+					</ListGroupItem>
 
 					<div className="buttons">
 						<button
 							type="button"
 							className="btn btn-outline-secondary"
-							onClick={() => handleOnchange(todo.id)}
+							onClick={() => handleOnChangeText(todo.id)}
 						>
 							Изменить
 						</button>
@@ -49,6 +61,6 @@ export const Todo = () => {
 					</div>
 				</div>
 			))}
-		</div>
+		</Form>
 	);
 };
