@@ -1,72 +1,70 @@
-import React from 'react';
-import { Form, ListGroupItem } from 'react-bootstrap';
+import React, { useState, FC } from 'react';
+import { Form, ListGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { changeTodo, deleteTodo, toggleTodo } from '../../redux/reducer/todo/action-creators';
-import { TodoType } from '../../redux/reducer/todo/types';
+import { TodoProps } from './Todo.types';
 
-export const Todo = () => {
-	const todos: TodoType[] = useTypedSelector((store) => store.todos);
+export const Todo: FC<TodoProps> = ({ todo }) => {
+	const [isEditing, setIsEditing] = useState(false);
+	const [value, setValue] = useState(todo.text);
 	const dispatch = useDispatch();
-
-	if (!todos.length) {
-		return (
-			<div className="todos">
-				<h1>Добавьте задачку</h1>
-			</div>
-		);
-	}
 
 	const handleOnToggleComplete = (todoId: number): void => {
 		dispatch(toggleTodo(todoId));
 	};
 
-	const handleOnChangeText = (todoId: number): void => {
-		const newTodoText = 'test new Text';
+	const handleOnDelete = (todoId: number): void => {
+		dispatch(deleteTodo(todoId));
+	};
 
-		dispatch(changeTodo(todoId, newTodoText));
+	const toggleToEdit = () => {
+		setIsEditing((isEditing) => !isEditing);
+	};
+
+	const handleOnChangeText = (e: React.ChangeEvent<HTMLInputElement>): void => {
+		setValue(e.target.value);
+	};
+
+	const handleOnSubmit = (e: React.SyntheticEvent, todoId: number): void => {
+		e.preventDefault();
+		setIsEditing((isEditing) => !isEditing);
+
+		dispatch(changeTodo(todoId, value));
 	};
 
 	return (
-		<div className="d-flex flex-column align-items-center justify-content-center ">
-			{todos.map((todo) => (
-				<div
-					key={todo.id}
-					className="d-flex w-100 justify-content-center align-items-center gap-2 mb-3"
-				>
-					<Form.Check
-						aria-label="option 1"
-						type="checkbox"
-						onChange={() => handleOnToggleComplete(todo.id)}
-					/>
+		<div className="d-flex w-100 justify-content-center align-items-center gap-2 mb-3">
+			<Form.Check
+				aria-label="option 1"
+				type="checkbox"
+				onChange={() => handleOnToggleComplete(todo.id)}
+			/>
 
-					<ListGroupItem
+			<ListGroup className="w-50">
+				{isEditing === false ? (
+					<ListGroup.Item
 						variant={todo.isCompleted ? 'success' : 'light'}
-						action
-						className="w-50 rounded-3"
+						// onDoubleClick={toggleToEdit}
+						onClick={toggleToEdit}
 					>
 						{todo.text}
-					</ListGroupItem>
+					</ListGroup.Item>
+				) : (
+					<Form onSubmit={(e) => handleOnSubmit(e, todo.id)}>
+						<Form.Control type="text" value={value} onChange={handleOnChangeText} />
+					</Form>
+				)}
+			</ListGroup>
 
-					<div className="buttons d-flex gap-2">
-						<button
-							type="button"
-							className="btn btn-outline-secondary"
-							onClick={() => handleOnChangeText(todo.id)}
-						>
-							Изменить
-						</button>
-
-						<button
-							type="button"
-							className="btn btn-outline-danger"
-							onClick={() => dispatch(deleteTodo(todo.id))}
-						>
-							&times;
-						</button>
-					</div>
-				</div>
-			))}
+			<div className="d-flex gap-2">
+				<button
+					type="button"
+					className="btn btn-outline-danger"
+					onClick={() => handleOnDelete(todo.id)}
+				>
+					&times;
+				</button>
+			</div>
 		</div>
 	);
 };
