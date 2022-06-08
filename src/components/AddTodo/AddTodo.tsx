@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/reducer/todo/action-creators';
 
-export const AddTodo = () => {
+export const AddTodo: FC = () => {
 	const [inputValue, setInputValue] = useState('');
 	const dispatch = useDispatch();
 

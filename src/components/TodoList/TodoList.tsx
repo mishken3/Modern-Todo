@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { TodoType } from '../../redux/reducer/todo/types';
 import { Todo } from '../index';
 
-export const TodoList = () => {
+export const TodoList: FC = () => {
 	const todos: TodoType[] = useTypedSelector((store) => store.todos);
 
 	if (!todos.length) {

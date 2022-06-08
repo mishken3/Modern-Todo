@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 
-export const Header = () => {
+export const Header: FC = () => {
 	return (
 		<Navbar bg="primary" variant="dark">
 			<Container className="justify-content-center">

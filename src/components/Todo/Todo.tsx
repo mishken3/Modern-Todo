@@ -17,7 +17,7 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
 		dispatch(deleteTodo(todoId));
 	};
 
-	const toggleToEdit = () => {
+	const toggleToEdit = (): void => {
 		setIsEditing((isEditing) => !isEditing);
 	};
 
