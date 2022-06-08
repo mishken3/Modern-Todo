@@ -11,8 +11,9 @@ export const Todo = () => {
 
 	if (!todos.length) {
 		return (
-			<div className="todos">
-				<h1>Добавьте задачку</h1>
+			<div className="d-flex align-items-center flex-column">
+				<h2 className="pb-20">Активных задач нет.</h2>
+				<p>Добавьте задачку в поле выше.</p>
 			</div>
 		);
 	}
