@@ -40,18 +40,27 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
 				onChange={() => handleOnToggleComplete(todo.id)}
 			/>
 
-			<ListGroup className="w-50">
+			<ListGroup
+				className="w-50"
+				// onMouseEnter={() => setIsEditing(true)}
+				// onMouseLeave={() => setIsEditing(false)}
+			>
 				{isEditing === false ? (
 					<ListGroup.Item
 						variant={todo.isCompleted ? 'success' : 'light'}
-						// onDoubleClick={toggleToEdit}
-						onClick={toggleToEdit}
+						onDoubleClick={toggleToEdit}
 					>
 						{todo.text}
 					</ListGroup.Item>
 				) : (
 					<Form onSubmit={(e) => handleOnSubmit(e, todo.id)}>
-						<Form.Control type="text" value={value} onChange={handleOnChangeText} />
+						<Form.Control
+							type="text"
+							value={value}
+							onChange={handleOnChangeText}
+							autoFocus
+							className="shadow-none"
+						/>
 					</Form>
 				)}
 			</ListGroup>
