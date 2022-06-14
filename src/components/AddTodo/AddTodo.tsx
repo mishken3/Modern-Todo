@@ -29,7 +29,7 @@ export const AddTodo: FC = () => {
 					value={inputValue}
 					onChange={handleOnChange}
 				/>
-				<Button className="shadow-none" type="submit">
+				<Button className="shadow-none" type="submit" variant="dark">
 					Добавить
 				</Button>
 			</InputGroup>

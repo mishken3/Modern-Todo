@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { Form, ListGroup } from 'react-bootstrap';
+import { Form, ListGroup, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { changeTodo, deleteTodo, toggleTodo } from '../../redux/reducer/todo/action-creators';
 import { TodoProps } from './Todo.types';
@@ -66,13 +66,14 @@ export const Todo: FC<TodoProps> = ({ todo }) => {
 			</ListGroup>
 
 			<div className="d-flex gap-2">
-				<button
+				<Button
 					type="button"
 					className="btn btn-outline-danger"
+					variant="none"
 					onClick={() => handleOnDelete(todo.id)}
 				>
 					&times;
-				</button>
+				</Button>
 			</div>
 		</div>
 	);
